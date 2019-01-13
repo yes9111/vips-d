@@ -1,0 +1,9 @@
+name "vips-d"
+description "Wrapper library for VIPS"
+authors "Eugene Yang"
+copyright "Copyright © 2018, Eugene Yang"
+license "MIT"
+targetType "library"
+dependency "gtk-d" version="~>3.8.3"
+libs "vips"
+
