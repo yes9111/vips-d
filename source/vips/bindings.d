@@ -7,6 +7,7 @@ extern(C)
     // Opaque structs
     struct VipsImage;
     struct VipsOperation;
+    struct VipsObject;
     struct VipsBlob;
 
     // Vips error functions
@@ -41,6 +42,8 @@ extern(C)
     int vips_init(const char*);
     void vips_leak_set(bool);
     void vips_shutdown();
+    void vips_object_unref_outputs(VipsOperation* op);
+    int vips_object_build(VipsObject* obj);
 
     // GObject functions
     int g_object_unref(void* p);

@@ -28,11 +28,10 @@ public:
         baseOp(opName, options);
     }
 
-    static fromFile(string file)
+    static VImage fromFile(string file)
     {
         import std.string : fromStringz, toStringz;
         import std.typecons : scoped;
-        import std.stdio : writeln;
         VImage image;
         auto opName = vips_foreign_find_load(file.toStringz).fromStringz;
         auto options = scoped!VOption();
@@ -56,12 +55,15 @@ package void baseOp(const(char)[] name, VOption options)
 {
     import std.exception : enforce;
     import std.string : fromStringz, toStringz;
+    import std.typecons : Unique;
 
     auto op = vips_operation_new(name.toStringz);
     scope(exit) g_object_unref(op);
 
+    Unique!ObjectG obj = ObjectG.getDObject!(ObjectG)(cast(GObject*)op);
+
     options.setInputs(op);
-    immutable int result = vips_cache_operation_buildp(&op);
+    immutable int result = vips_object_build(cast(VipsObject*)op);
     enforce(result == 0,
         "Could not run vips operation: " ~ vips_error_buffer().fromStringz);
     options.readOutputs(op);
@@ -69,26 +71,13 @@ package void baseOp(const(char)[] name, VOption options)
 
 unittest
 {
-    import std.stdio : writeln;
     import std.string : fromStringz;
-    import vips.operations : resize;
-    auto initVal = vips_init("test");
-    writeln("Vips Version: ", vips_version_string().fromStringz);
-    VImage image = VImage.fromFile("test.png");
-    auto resized = resize(image, 0.5, null);
-    resized.saveToFile("resized.jpg");
-}
-
-unittest
-{
-    import gobject.ObjectG;
-    import std.stdio : writeln;
-    auto op = vips_operation_new("thumbnail");
-    auto obj = new ObjectG(cast(GObject*) op);
-    writeln("Obj's underlying pointer: ", obj.getObjectGStruct());
-    writeln("Obj's refcount: ", obj.getObjectGStruct().refCount);
-    auto obj2 = new ObjectG(cast(GObject*) op);
-    writeln("Obj's underlying pointer: ", obj.getObjectGStruct());
-    writeln("Obj2's refcount: ", obj2.getObjectGStruct().refCount);
+    import std.typecons : Unique, scoped;
+    import vips.operations : invert;
+    vips_init("test");
+    vips_leak_set(true);
+    auto image = VImage.fromFile("t.png");
+    Unique!VImage inverted = image.invert(scoped!VOption());
+    Unique!VImage hold = image;
 }
 

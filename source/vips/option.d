@@ -33,7 +33,6 @@ class VOption
 public:
      ~this()
     {
-        // unset all values
         foreach (config; options)
         {
             config.value.unset();
@@ -199,15 +198,4 @@ private:
 
         g_object_set_property(cast(GObject*) operation, key.toStringz, value.getValueStruct);
     }
-}
-
-unittest
-{
-    import std.stdio : writeln;
-    import gobject.Value;
-
-    writeln("Running value unit test");
-    auto v = new Value(50);
-    writeln("V's gType:", v.gType);
-    writeln("V's getType:", v.getType());
 }
