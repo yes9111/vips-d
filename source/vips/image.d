@@ -72,12 +72,21 @@ package void baseOp(const(char)[] name, VOption options)
 unittest
 {
     import std.string : fromStringz;
+    import std.conv : to;
     import std.typecons : Unique, scoped;
-    import vips.operations : invert;
+    import vips.operations : invert, thumbnail, rotate;
     vips_init("test");
     vips_leak_set(true);
-    auto image = VImage.fromFile("t.png");
-    Unique!VImage inverted = image.invert(scoped!VOption());
-    Unique!VImage hold = image;
+    auto image = VImage.fromFile("t.jpg");
+    scope(exit) destroy(image);
+    auto inverted = image.invert(scoped!VOption());
+    scope(exit) destroy(inverted);
+    auto rotated = inverted.rotate(90, scoped!VOption());
+    scope(exit) destroy(rotated);
+    rotated.saveToFile("rotated.png");
+
+    Unique!VImage thumb = thumbnail("t.jpg", 200, scoped!VOption());
+    thumb.saveToFile("thumb-test.png");
+    inverted.saveToFile("inverted.png");
 }
 
