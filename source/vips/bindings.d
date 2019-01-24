@@ -13,7 +13,8 @@ extern(C)
     // Vips error functions
     const(char)* vips_error_buffer();
     void vips_error_clear();
-
+    void vips_cache_set_max (int max);
+    void vips_cache_drop_all();
     // Type getter functions
     GType vips_image_get_type();
     GType vips_array_double_get_type();
@@ -26,6 +27,8 @@ extern(C)
     const(char)* vips_foreign_find_save(const char* name);
     const(char)* vips_version_string();
     int vips_cache_operation_buildp(VipsOperation** operation);
+    VipsOperation* vips_cache_operation_build(VipsOperation* operation);
+
     VipsOperation* vips_operation_new(const char* opName);
     void vips_value_set_array_int(
         GValue* value,
@@ -48,6 +51,7 @@ extern(C)
     // GObject functions
     int g_object_unref(void* p);
     void g_object_set_property(GObject*, const char*, GValue*);
+    GObject* g_value_get_object(GValue*);
 }
 
 

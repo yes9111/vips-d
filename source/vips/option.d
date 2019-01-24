@@ -28,6 +28,11 @@ struct ParamConfig
     }
 }
 
+extern(C)
+{
+    bool g_type_is_a(GType src, GType target);
+}
+
 class VOption
 {
 public:
@@ -148,31 +153,31 @@ public:
         return this;
     }
 
-    void setInputs(VipsOperation* operation)
+    void setInputs(ObjectG operation)
     {
         foreach (option; options)
         {
             if (!option.isOutput)
             {
-                setProperty(operation, option.key, option.value);
+                operation.setProperty(option.key, option.value);
             }
         }
     }
 
-    void readOutputs(VipsOperation* operation)
+    void readOutputs(ObjectG operation)
     {
-        import gobject.Type:Type;
-        auto obj = ObjectG.getDObject!ObjectG(cast(GObject*)operation);
+        import gobject.Type : Type;
+        import vips.bindings : g_value_get_object;
         foreach (option; options)
         {
             if (option.isOutput)
             {
-                obj.getProperty(option.key, option.value);
+                operation.getProperty(option.key, option.value);
                 immutable type = option.value.getValueStruct().gType;
                 if (type == vips_image_get_type())
                 {
-                    auto obj = option.value.get!VImage();
-                    *(option.output.vImage) = obj !is null ? obj : new VImage(option.value.getObject());
+                    auto obj = cast(VipsImage*)g_value_get_object(option.value.getValueStruct);
+                    *(option.output.vImage) = ObjectG.getDObject!VImage(obj);
                 }
                 else if (type == GType.INT)
                 {
@@ -192,11 +197,4 @@ public:
 
 private:
     ParamConfig[string] options;
-
-    void setProperty(VipsOperation* operation, string key, Value value)
-    {
-        import std.string : toStringz;
-
-        g_object_set_property(cast(GObject*) operation, key.toStringz, value.getValueStruct);
-    }
 }

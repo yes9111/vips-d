@@ -5,12 +5,19 @@ import vips.bindings;
 
 import gobject.Value;
 import gobject.ObjectG;
+import gobject.c.types : GObject;
 
 class VImage : ObjectG{
 public:
-    this(ObjectG source, bool isOwned = false)
+    this(VipsImage* source, bool isOwned = false)
     {
-        super(source.getObjectGStruct(), isOwned);
+        super(cast(GObject*)source, isOwned);
+    }
+
+    ~this()
+    {
+        import std.stdio:writeln;
+        writeln("Destructing image");
     }
 
     void saveToFile(string file)
@@ -54,15 +61,19 @@ package void baseOp(const(char)[] name, VOption options)
     import std.string : fromStringz, toStringz;
     import std.typecons : Unique;
 
-    auto op = vips_operation_new(name.toStringz);
-    scope(exit) g_object_unref(op);
-
-    Unique!ObjectG obj = ObjectG.getDObject!(ObjectG)(cast(GObject*)op);
-
+    auto op = new ObjectG(
+        cast(GObject*)vips_operation_new(name.toStringz),
+        true
+    );
     options.setInputs(op);
-    immutable int result = vips_cache_operation_buildp(&op);
-    enforce(result == 0,
-        "Could not run vips operation: " ~ vips_error_buffer().fromStringz);
+    auto op2 = ObjectG.getDObject!ObjectG(
+        cast(GObject*)vips_cache_operation_build(
+            cast(VipsOperation*)op.getObjectGStruct),
+        true
+    );
+    if(op2 is op){
+        op.unref();
+    }
     options.readOutputs(op);
 }
 
@@ -81,17 +92,20 @@ unittest
     }
 
     vips_init("test");
-    vips_leak_set(true);
-    auto image = VImage.fromFile("t.jpg");
-    StopWatch sw = StopWatch(AutoStart.yes);
-    foreach(i; 200 .. 220)
+    scope(exit) vips_shutdown();
+    // vips_leak_set(true);
+    VImage image = VImage.fromFile("t.jpg");
+    // StopWatch sw = StopWatch(AutoStart.yes);
+    // writefln("image refCount: %d", getRC(image));
+    foreach(i; 200 .. 10_000)
     {
-        auto img = image.rotate(i % 4 * 90, null);
-        auto thumb = thumbnail_image(img, i, null);
-        writefln("Generated thunbnail. Took %d ms", sw.peek.total!"msecs");
-        thumb.saveToFile("thumbnails_" ~ i.to!string ~ ".png");
-        writefln("Finished thumbnail %d. Took %d ms", i, sw.peek.total!"msecs");
-        sw.reset();
+        // auto image = VImage.fromFile("t.jpg");
+        // writefln("image refCount: %d", getRC(image));
+        // writeln("Iteration ", i);
+        image = image.invert(null).rotate(i % 4 * 90, null);
+        auto thumb = image.thumbnail_image(i % 10 * 20 + 200, null);
+        // writefln("Generated thunbnail. Took %d ms", sw.peek.total!"msecs");
+        // sw.reset();
     }
     /+
     writefln("Loaded img RC: %d", getRC(image));
