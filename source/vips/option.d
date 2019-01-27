@@ -1,7 +1,5 @@
 module vips.option;
 
-import std.stdio: writeln;
-
 import vips.bindings;
 import vips.image;
 import vips.operation;

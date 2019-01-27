@@ -36,13 +36,11 @@ public:
     void saveToFile(string file)
     {
         import std.string : fromStringz, toStringz;
-        import std.typecons:scoped;
         auto opName = vips_foreign_find_save(file.toStringz).fromStringz;
         auto options = VOption();
         options
             .set("in", this)
             .set("filename", file);
-        options.set("in", this).set("filename", file);
         baseOp(opName, options);
     }
 
@@ -92,7 +90,7 @@ unittest
     vips_cache_set_max(0);
     vips_leak_set(true);
     VImage image = VImage.fromFile("t.png");
-    foreach(i; 200 .. 300_00)
+    foreach(i; 200 .. 300)
     {
         auto mid = image.invert().rotate(i % 4 * 90);
         auto thumb = mid.thumbnail_image(i % 10 * 20 + 200);
