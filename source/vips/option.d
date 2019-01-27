@@ -1,11 +1,15 @@
 module vips.option;
 
+import std.stdio: writeln;
+
 import vips.bindings;
 import vips.image;
+import vips.operation;
+import vips.conv : toGObject;
 import gobject.Value;
 import gobject.ObjectG;
 
-union ParamOutput
+private union ParamOutput
 {
     int* vInt;
     double* vDouble;
@@ -15,7 +19,7 @@ union ParamOutput
     VipsBlob** vBlob;
 }
 
-struct ParamConfig
+private struct ParamConfig
 {
     string key;
     bool isOutput;
@@ -33,7 +37,7 @@ extern(C)
     bool g_type_is_a(GType src, GType target);
 }
 
-class VOption
+struct VOption
 {
 public:
      ~this()
@@ -44,15 +48,16 @@ public:
         }
     }
 
-    VOption set(string key, VImage value)
+    ref VOption set(string key, VImage value)
     {
         auto config = ParamConfig(key);
-        config.value = new Value(value);
+        config.value = new Value().init(VImage.getType());
+        g_value_set_object(config.value.getValueStruct, value.img.toGObject);
         options[key] = config;
         return this;
     }
 
-    VOption set(string key, VImage* value)
+    ref VOption set(string key, VImage* value)
     {
         import gobject.Type : Type;
 
@@ -64,7 +69,7 @@ public:
         return this;
     }
 
-    VOption set(string key, VImage[] value)
+    ref VOption set(string key, VImage[] value)
     {
         auto config = ParamConfig(key);
         config.value = new Value();
@@ -73,13 +78,13 @@ public:
         auto array = vips_value_get_array_image(config.value.getValueStruct, null);
         foreach (i, image; value)
         {
-            array[i] = image.getImageStruct();
+            array[i] = image.img;
         }
         options[key] = config;
         return this;
     }
 
-    VOption set(T)(string key, T value)
+    ref VOption set(T)(string key, T value)
     {
         auto config = ParamConfig(key);
         config.value = new Value(value);
@@ -87,7 +92,7 @@ public:
         return this;
     }
 
-    VOption set(string key, VipsBlob* blob)
+    ref VOption set(string key, VipsBlob* blob)
     {
         auto config = ParamConfig(key);
         config.value = new Value(new ObjectG(cast(GObject*) blob));
@@ -95,7 +100,7 @@ public:
         return this;
     }
 
-    VOption set(T : U*, U)(string key, T value)
+    ref VOption set(T : U*, U)(string key, T value)
     {
         import std.traits : isScalarType;
 
@@ -135,7 +140,7 @@ public:
         return this;
     }
 
-    VOption set(string key, double[] vals)
+    ref VOption set(string key, double[] vals)
     {
         auto config = ParamConfig(key);
         config.value = new Value();
@@ -145,15 +150,15 @@ public:
         return this;
     }
 
-    VOption set(string key, int[] vals)
+    ref VOption set(string key, int[] vals)
     {
         auto config = ParamConfig(key);
-        config.value = new Value(vips_array_int_get_type());
+        config.value = new Value().init(vips_array_int_get_type());
         vips_value_set_array_int(config.value.getValueStruct(), vals.ptr, cast(int) vals.length,);
         return this;
     }
 
-    void setInputs(ObjectG operation)
+    void setInputs(ref VOperation operation)
     {
         foreach (option; options)
         {
@@ -164,7 +169,7 @@ public:
         }
     }
 
-    void readOutputs(ObjectG operation)
+    void readOutputs(ref VOperation operation)
     {
         import gobject.Type : Type;
         import vips.bindings : g_value_get_object;
@@ -177,7 +182,7 @@ public:
                 if (type == vips_image_get_type())
                 {
                     auto obj = cast(VipsImage*)g_value_get_object(option.value.getValueStruct);
-                    *(option.output.vImage) = ObjectG.getDObject!VImage(obj);
+                    *(option.output.vImage) = VImage(obj, true);
                 }
                 else if (type == GType.INT)
                 {

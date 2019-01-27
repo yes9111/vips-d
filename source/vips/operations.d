@@ -16,19 +16,19 @@ Operators were generated for the following Vips version
 import vips.base;
 import vips.bindings;
 
-void system(string cmd_format, VOption options)
+void system(string cmd_format, VOption options = VOption())
 {
 	baseOp("system",
-		(options !is null ? options : new VOption())
+		options
 			.set("cmd-format", cmd_format)
 	);
 }
 
-VImage add(VImage left, VImage right, VOption options)
+VImage add(VImage left, VImage right, VOption options = VOption())
 {
 	VImage output;
 	baseOp("add",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -36,11 +36,11 @@ VImage add(VImage left, VImage right, VOption options)
 	return output;
 }
 
-VImage subtract(VImage left, VImage right, VOption options)
+VImage subtract(VImage left, VImage right, VOption options = VOption())
 {
 	VImage output;
 	baseOp("subtract",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -48,11 +48,11 @@ VImage subtract(VImage left, VImage right, VOption options)
 	return output;
 }
 
-VImage multiply(VImage left, VImage right, VOption options)
+VImage multiply(VImage left, VImage right, VOption options = VOption())
 {
 	VImage output;
 	baseOp("multiply",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -60,11 +60,11 @@ VImage multiply(VImage left, VImage right, VOption options)
 	return output;
 }
 
-VImage divide(VImage left, VImage right, VOption options)
+VImage divide(VImage left, VImage right, VOption options = VOption())
 {
 	VImage output;
 	baseOp("divide",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -72,11 +72,11 @@ VImage divide(VImage left, VImage right, VOption options)
 	return output;
 }
 
-VImage relational(VImage left, VImage right, VipsOperationRelational relational, VOption options)
+VImage relational(VImage left, VImage right, VipsOperationRelational relational, VOption options = VOption())
 {
 	VImage output;
 	baseOp("relational",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -85,11 +85,11 @@ VImage relational(VImage left, VImage right, VipsOperationRelational relational,
 	return output;
 }
 
-VImage remainder(VImage left, VImage right, VOption options)
+VImage remainder(VImage left, VImage right, VOption options = VOption())
 {
 	VImage output;
 	baseOp("remainder",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -97,11 +97,11 @@ VImage remainder(VImage left, VImage right, VOption options)
 	return output;
 }
 
-VImage boolean(VImage left, VImage right, VipsOperationBoolean boolean, VOption options)
+VImage boolean(VImage left, VImage right, VipsOperationBoolean boolean, VOption options = VOption())
 {
 	VImage output;
 	baseOp("boolean",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -110,11 +110,11 @@ VImage boolean(VImage left, VImage right, VipsOperationBoolean boolean, VOption 
 	return output;
 }
 
-VImage math2(VImage left, VImage right, VipsOperationMath2 math2, VOption options)
+VImage math2(VImage left, VImage right, VipsOperationMath2 math2, VOption options = VOption())
 {
 	VImage output;
 	baseOp("math2",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -123,11 +123,11 @@ VImage math2(VImage left, VImage right, VipsOperationMath2 math2, VOption option
 	return output;
 }
 
-VImage complex2(VImage left, VImage right, VipsOperationComplex2 cmplx, VOption options)
+VImage complex2(VImage left, VImage right, VipsOperationComplex2 cmplx, VOption options = VOption())
 {
 	VImage output;
 	baseOp("complex2",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -136,11 +136,11 @@ VImage complex2(VImage left, VImage right, VipsOperationComplex2 cmplx, VOption 
 	return output;
 }
 
-VImage complexform(VImage left, VImage right, VOption options)
+VImage complexform(VImage left, VImage right, VOption options = VOption())
 {
 	VImage output;
 	baseOp("complexform",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -148,33 +148,33 @@ VImage complexform(VImage left, VImage right, VOption options)
 	return output;
 }
 
-VImage sum(VImage[] input, VOption options)
+VImage sum(VImage[] input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("sum",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage invert(VImage input, VOption options)
+VImage invert(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("invert",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage linear(VImage input, double[] a, double[] b, VOption options)
+VImage linear(VImage input, double[] a, double[] b, VOption options = VOption())
 {
 	VImage output;
 	baseOp("linear",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("a", a)
@@ -183,11 +183,11 @@ VImage linear(VImage input, double[] a, double[] b, VOption options)
 	return output;
 }
 
-VImage math(VImage input, VipsOperationMath math, VOption options)
+VImage math(VImage input, VipsOperationMath math, VOption options = VOption())
 {
 	VImage output;
 	baseOp("math",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("math", math)
@@ -195,33 +195,33 @@ VImage math(VImage input, VipsOperationMath math, VOption options)
 	return output;
 }
 
-VImage abs(VImage input, VOption options)
+VImage abs(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("abs",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage sign(VImage input, VOption options)
+VImage sign(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("sign",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage round(VImage input, VipsOperationRound round, VOption options)
+VImage round(VImage input, VipsOperationRound round, VOption options = VOption())
 {
 	VImage output;
 	baseOp("round",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("round", round)
@@ -229,11 +229,11 @@ VImage round(VImage input, VipsOperationRound round, VOption options)
 	return output;
 }
 
-VImage relational_const(VImage input, VipsOperationRelational relational, double[] c, VOption options)
+VImage relational_const(VImage input, VipsOperationRelational relational, double[] c, VOption options = VOption())
 {
 	VImage output;
 	baseOp("relational_const",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("relational", relational)
@@ -242,11 +242,11 @@ VImage relational_const(VImage input, VipsOperationRelational relational, double
 	return output;
 }
 
-VImage remainder_const(VImage input, double[] c, VOption options)
+VImage remainder_const(VImage input, double[] c, VOption options = VOption())
 {
 	VImage output;
 	baseOp("remainder_const",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("c", c)
@@ -254,11 +254,11 @@ VImage remainder_const(VImage input, double[] c, VOption options)
 	return output;
 }
 
-VImage boolean_const(VImage input, VipsOperationBoolean boolean, double[] c, VOption options)
+VImage boolean_const(VImage input, VipsOperationBoolean boolean, double[] c, VOption options = VOption())
 {
 	VImage output;
 	baseOp("boolean_const",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("boolean", boolean)
@@ -267,11 +267,11 @@ VImage boolean_const(VImage input, VipsOperationBoolean boolean, double[] c, VOp
 	return output;
 }
 
-VImage math2_const(VImage input, VipsOperationMath2 math2, double[] c, VOption options)
+VImage math2_const(VImage input, VipsOperationMath2 math2, double[] c, VOption options = VOption())
 {
 	VImage output;
 	baseOp("math2_const",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("math2", math2)
@@ -280,11 +280,11 @@ VImage math2_const(VImage input, VipsOperationMath2 math2, double[] c, VOption o
 	return output;
 }
 
-VImage complex(VImage input, VipsOperationComplex cmplx, VOption options)
+VImage complex(VImage input, VipsOperationComplex cmplx, VOption options = VOption())
 {
 	VImage output;
 	baseOp("complex",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("cmplx", cmplx)
@@ -292,11 +292,11 @@ VImage complex(VImage input, VipsOperationComplex cmplx, VOption options)
 	return output;
 }
 
-VImage complexget(VImage input, VipsOperationComplexget get, VOption options)
+VImage complexget(VImage input, VipsOperationComplexget get, VOption options = VOption())
 {
 	VImage output;
 	baseOp("complexget",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("get", get)
@@ -304,88 +304,88 @@ VImage complexget(VImage input, VipsOperationComplexget get, VOption options)
 	return output;
 }
 
-double avg(VImage input, VOption options)
+double avg(VImage input, VOption options = VOption())
 {
 	double output;
 	baseOp("avg",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-double min(VImage input, VOption options)
+double min(VImage input, VOption options = VOption())
 {
 	double output;
 	baseOp("min",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-double max(VImage input, VOption options)
+double max(VImage input, VOption options = VOption())
 {
 	double output;
 	baseOp("max",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-double deviate(VImage input, VOption options)
+double deviate(VImage input, VOption options = VOption())
 {
 	double output;
 	baseOp("deviate",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage stats(VImage input, VOption options)
+VImage stats(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("stats",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage hist_find(VImage input, VOption options)
+VImage hist_find(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hist_find",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage hist_find_ndim(VImage input, VOption options)
+VImage hist_find_ndim(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hist_find_ndim",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage hist_find_indexed(VImage input, VImage index, VOption options)
+VImage hist_find_indexed(VImage input, VImage index, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hist_find_indexed",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("index", index)
 			.set("out", &output)
@@ -393,33 +393,33 @@ VImage hist_find_indexed(VImage input, VImage index, VOption options)
 	return output;
 }
 
-VImage hough_line(VImage input, VOption options)
+VImage hough_line(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hough_line",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage hough_circle(VImage input, VOption options)
+VImage hough_circle(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hough_circle",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage project(VImage input, out VImage rows, VOption options)
+VImage project(VImage input, out VImage rows, VOption options = VOption())
 {
 	VImage columns;
 	baseOp("project",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("columns", &columns)
 			.set("rows", &rows)
@@ -427,11 +427,11 @@ VImage project(VImage input, out VImage rows, VOption options)
 	return columns;
 }
 
-VImage profile(VImage input, out VImage rows, VOption options)
+VImage profile(VImage input, out VImage rows, VOption options = VOption())
 {
 	VImage columns;
 	baseOp("profile",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("columns", &columns)
 			.set("rows", &rows)
@@ -439,11 +439,11 @@ VImage profile(VImage input, out VImage rows, VOption options)
 	return columns;
 }
 
-VImage measure(VImage input, int h, int v, VOption options)
+VImage measure(VImage input, int h, int v, VOption options = VOption())
 {
 	VImage output;
 	baseOp("measure",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("h", h)
@@ -452,11 +452,11 @@ VImage measure(VImage input, int h, int v, VOption options)
 	return output;
 }
 
-double[] getpoint(VImage input, int x, int y, VOption options)
+double[] getpoint(VImage input, int x, int y, VOption options = VOption())
 {
 	double[] out_array;
 	baseOp("getpoint",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out-array", &out_array)
 			.set("x", x)
@@ -465,11 +465,11 @@ double[] getpoint(VImage input, int x, int y, VOption options)
 	return out_array;
 }
 
-int find_trim(VImage input, out int top, out int width, out int height, VOption options)
+int find_trim(VImage input, out int top, out int width, out int height, VOption options = VOption())
 {
 	int left;
 	baseOp("find_trim",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("left", &left)
 			.set("top", &top)
@@ -479,66 +479,66 @@ int find_trim(VImage input, out int top, out int width, out int height, VOption 
 	return left;
 }
 
-VImage copy(VImage input, VOption options)
+VImage copy(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("copy",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage tilecache(VImage input, VOption options)
+VImage tilecache(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("tilecache",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage linecache(VImage input, VOption options)
+VImage linecache(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("linecache",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage sequential(VImage input, VOption options)
+VImage sequential(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("sequential",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage cache(VImage input, VOption options)
+VImage cache(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("cache",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage embed(VImage input, int x, int y, int width, int height, VOption options)
+VImage embed(VImage input, int x, int y, int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("embed",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("x", x)
@@ -549,11 +549,11 @@ VImage embed(VImage input, int x, int y, int width, int height, VOption options)
 	return output;
 }
 
-VImage gravity(VImage input, VipsCompassDirection direction, int width, int height, VOption options)
+VImage gravity(VImage input, VipsCompassDirection direction, int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("gravity",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("direction", direction)
@@ -563,11 +563,11 @@ VImage gravity(VImage input, VipsCompassDirection direction, int width, int heig
 	return output;
 }
 
-VImage flip(VImage input, VipsDirection direction, VOption options)
+VImage flip(VImage input, VipsDirection direction, VOption options = VOption())
 {
 	VImage output;
 	baseOp("flip",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("direction", direction)
@@ -575,11 +575,11 @@ VImage flip(VImage input, VipsDirection direction, VOption options)
 	return output;
 }
 
-VImage insert(VImage main, VImage sub, int x, int y, VOption options)
+VImage insert(VImage main, VImage sub, int x, int y, VOption options = VOption())
 {
 	VImage output;
 	baseOp("insert",
-		(options !is null ? options : new VOption())
+		options
 			.set("main", main)
 			.set("sub", sub)
 			.set("out", &output)
@@ -589,11 +589,11 @@ VImage insert(VImage main, VImage sub, int x, int y, VOption options)
 	return output;
 }
 
-VImage join(VImage in1, VImage in2, VipsDirection direction, VOption options)
+VImage join(VImage in1, VImage in2, VipsDirection direction, VOption options = VOption())
 {
 	VImage output;
 	baseOp("join",
-		(options !is null ? options : new VOption())
+		options
 			.set("in1", in1)
 			.set("in2", in2)
 			.set("out", &output)
@@ -602,22 +602,22 @@ VImage join(VImage in1, VImage in2, VipsDirection direction, VOption options)
 	return output;
 }
 
-VImage arrayjoin(VImage[] input, VOption options)
+VImage arrayjoin(VImage[] input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("arrayjoin",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage extract_area(VImage input, int left, int top, int width, int height, VOption options)
+VImage extract_area(VImage input, int left, int top, int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("extract_area",
-		(options !is null ? options : new VOption())
+		options
 			.set("input", input)
 			.set("out", &output)
 			.set("left", left)
@@ -628,11 +628,11 @@ VImage extract_area(VImage input, int left, int top, int width, int height, VOpt
 	return output;
 }
 
-VImage smartcrop(VImage input, int width, int height, VOption options)
+VImage smartcrop(VImage input, int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("smartcrop",
-		(options !is null ? options : new VOption())
+		options
 			.set("input", input)
 			.set("out", &output)
 			.set("width", width)
@@ -641,11 +641,11 @@ VImage smartcrop(VImage input, int width, int height, VOption options)
 	return output;
 }
 
-VImage extract_band(VImage input, int band, VOption options)
+VImage extract_band(VImage input, int band, VOption options = VOption())
 {
 	VImage output;
 	baseOp("extract_band",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("band", band)
@@ -653,22 +653,22 @@ VImage extract_band(VImage input, int band, VOption options)
 	return output;
 }
 
-VImage bandjoin(VImage[] input, VOption options)
+VImage bandjoin(VImage[] input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("bandjoin",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage bandjoin_const(VImage input, double[] c, VOption options)
+VImage bandjoin_const(VImage input, double[] c, VOption options = VOption())
 {
 	VImage output;
 	baseOp("bandjoin_const",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("c", c)
@@ -676,33 +676,33 @@ VImage bandjoin_const(VImage input, double[] c, VOption options)
 	return output;
 }
 
-VImage bandrank(VImage[] input, VOption options)
+VImage bandrank(VImage[] input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("bandrank",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage bandmean(VImage input, VOption options)
+VImage bandmean(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("bandmean",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage bandbool(VImage input, VipsOperationBoolean boolean, VOption options)
+VImage bandbool(VImage input, VipsOperationBoolean boolean, VOption options = VOption())
 {
 	VImage output;
 	baseOp("bandbool",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("boolean", boolean)
@@ -710,11 +710,11 @@ VImage bandbool(VImage input, VipsOperationBoolean boolean, VOption options)
 	return output;
 }
 
-VImage replicate(VImage input, int across, int down, VOption options)
+VImage replicate(VImage input, int across, int down, VOption options = VOption())
 {
 	VImage output;
 	baseOp("replicate",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("across", across)
@@ -723,11 +723,11 @@ VImage replicate(VImage input, int across, int down, VOption options)
 	return output;
 }
 
-VImage vipsCast(VImage input, VipsBandFormat format, VOption options)
+VImage vipsCast(VImage input, VipsBandFormat format, VOption options = VOption())
 {
 	VImage output;
 	baseOp("cast",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("format", format)
@@ -735,11 +735,11 @@ VImage vipsCast(VImage input, VipsBandFormat format, VOption options)
 	return output;
 }
 
-VImage rot(VImage input, VipsAngle angle, VOption options)
+VImage rot(VImage input, VipsAngle angle, VOption options = VOption())
 {
 	VImage output;
 	baseOp("rot",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("angle", angle)
@@ -747,33 +747,33 @@ VImage rot(VImage input, VipsAngle angle, VOption options)
 	return output;
 }
 
-VImage rot45(VImage input, VOption options)
+VImage rot45(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("rot45",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage autorot(VImage input, VOption options)
+VImage autorot(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("autorot",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage ifthenelse(VImage cond, VImage in1, VImage in2, VOption options)
+VImage ifthenelse(VImage cond, VImage in1, VImage in2, VOption options = VOption())
 {
 	VImage output;
 	baseOp("ifthenelse",
-		(options !is null ? options : new VOption())
+		options
 			.set("cond", cond)
 			.set("in1", in1)
 			.set("in2", in2)
@@ -782,11 +782,11 @@ VImage ifthenelse(VImage cond, VImage in1, VImage in2, VOption options)
 	return output;
 }
 
-VImage recomb(VImage input, VImage m, VOption options)
+VImage recomb(VImage input, VImage m, VOption options = VOption())
 {
 	VImage output;
 	baseOp("recomb",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("m", m)
@@ -794,66 +794,66 @@ VImage recomb(VImage input, VImage m, VOption options)
 	return output;
 }
 
-VImage bandfold(VImage input, VOption options)
+VImage bandfold(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("bandfold",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage bandunfold(VImage input, VOption options)
+VImage bandunfold(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("bandunfold",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage flatten(VImage input, VOption options)
+VImage flatten(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("flatten",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage premultiply(VImage input, VOption options)
+VImage premultiply(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("premultiply",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage unpremultiply(VImage input, VOption options)
+VImage unpremultiply(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("unpremultiply",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage grid(VImage input, int tile_height, int across, int down, VOption options)
+VImage grid(VImage input, int tile_height, int across, int down, VOption options = VOption())
 {
 	VImage output;
 	baseOp("grid",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("tile-height", tile_height)
@@ -863,44 +863,44 @@ VImage grid(VImage input, int tile_height, int across, int down, VOption options
 	return output;
 }
 
-VImage transpose3d(VImage input, VOption options)
+VImage transpose3d(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("transpose3d",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage scale(VImage input, VOption options)
+VImage scale(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("scale",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage wrap(VImage input, VOption options)
+VImage wrap(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("wrap",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage zoom(VImage input, int xfac, int yfac, VOption options)
+VImage zoom(VImage input, int xfac, int yfac, VOption options = VOption())
 {
 	VImage output;
 	baseOp("zoom",
-		(options !is null ? options : new VOption())
+		options
 			.set("input", input)
 			.set("out", &output)
 			.set("xfac", xfac)
@@ -909,11 +909,11 @@ VImage zoom(VImage input, int xfac, int yfac, VOption options)
 	return output;
 }
 
-VImage subsample(VImage input, int xfac, int yfac, VOption options)
+VImage subsample(VImage input, int xfac, int yfac, VOption options = VOption())
 {
 	VImage output;
 	baseOp("subsample",
-		(options !is null ? options : new VOption())
+		options
 			.set("input", input)
 			.set("out", &output)
 			.set("xfac", xfac)
@@ -922,55 +922,55 @@ VImage subsample(VImage input, int xfac, int yfac, VOption options)
 	return output;
 }
 
-VImage msb(VImage input, VOption options)
+VImage msb(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("msb",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage byteswap(VImage input, VOption options)
+VImage byteswap(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("byteswap",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage falsecolour(VImage input, VOption options)
+VImage falsecolour(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("falsecolour",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage gamma(VImage input, VOption options)
+VImage gamma(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("gamma",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage composite(VImage[] input, int[] mode, VOption options)
+VImage composite(VImage[] input, int[] mode, VOption options = VOption())
 {
 	VImage output;
 	baseOp("composite",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("mode", mode)
@@ -978,11 +978,11 @@ VImage composite(VImage[] input, int[] mode, VOption options)
 	return output;
 }
 
-VImage composite2(VImage base, VImage overlay, VipsBlendMode mode, VOption options)
+VImage composite2(VImage base, VImage overlay, VipsBlendMode mode, VOption options = VOption())
 {
 	VImage output;
 	baseOp("composite2",
-		(options !is null ? options : new VOption())
+		options
 			.set("base", base)
 			.set("overlay", overlay)
 			.set("out", &output)
@@ -991,11 +991,11 @@ VImage composite2(VImage base, VImage overlay, VipsBlendMode mode, VOption optio
 	return output;
 }
 
-VImage black(int width, int height, VOption options)
+VImage black(int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("black",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1003,11 +1003,11 @@ VImage black(int width, int height, VOption options)
 	return output;
 }
 
-VImage gaussnoise(int width, int height, VOption options)
+VImage gaussnoise(int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("gaussnoise",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1015,22 +1015,22 @@ VImage gaussnoise(int width, int height, VOption options)
 	return output;
 }
 
-VImage text(string text, VOption options)
+VImage text(string text, VOption options = VOption())
 {
 	VImage output;
 	baseOp("text",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("text", text)
 	);
 	return output;
 }
 
-VImage xyz(int width, int height, VOption options)
+VImage xyz(int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("xyz",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1038,11 +1038,11 @@ VImage xyz(int width, int height, VOption options)
 	return output;
 }
 
-VImage gaussmat(double sigma, double min_ampl, VOption options)
+VImage gaussmat(double sigma, double min_ampl, VOption options = VOption())
 {
 	VImage output;
 	baseOp("gaussmat",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("sigma", sigma)
 			.set("min-ampl", min_ampl)
@@ -1050,11 +1050,11 @@ VImage gaussmat(double sigma, double min_ampl, VOption options)
 	return output;
 }
 
-VImage logmat(double sigma, double min_ampl, VOption options)
+VImage logmat(double sigma, double min_ampl, VOption options = VOption())
 {
 	VImage output;
 	baseOp("logmat",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("sigma", sigma)
 			.set("min-ampl", min_ampl)
@@ -1062,11 +1062,11 @@ VImage logmat(double sigma, double min_ampl, VOption options)
 	return output;
 }
 
-VImage eye(int width, int height, VOption options)
+VImage eye(int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("eye",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1074,11 +1074,11 @@ VImage eye(int width, int height, VOption options)
 	return output;
 }
 
-VImage grey(int width, int height, VOption options)
+VImage grey(int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("grey",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1086,11 +1086,11 @@ VImage grey(int width, int height, VOption options)
 	return output;
 }
 
-VImage zone(int width, int height, VOption options)
+VImage zone(int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("zone",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1098,11 +1098,11 @@ VImage zone(int width, int height, VOption options)
 	return output;
 }
 
-VImage sines(int width, int height, VOption options)
+VImage sines(int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("sines",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1110,11 +1110,11 @@ VImage sines(int width, int height, VOption options)
 	return output;
 }
 
-VImage mask_ideal(int width, int height, double frequency_cutoff, VOption options)
+VImage mask_ideal(int width, int height, double frequency_cutoff, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_ideal",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1123,11 +1123,11 @@ VImage mask_ideal(int width, int height, double frequency_cutoff, VOption option
 	return output;
 }
 
-VImage mask_ideal_ring(int width, int height, double frequency_cutoff, double ringwidth, VOption options)
+VImage mask_ideal_ring(int width, int height, double frequency_cutoff, double ringwidth, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_ideal_ring",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1137,11 +1137,11 @@ VImage mask_ideal_ring(int width, int height, double frequency_cutoff, double ri
 	return output;
 }
 
-VImage mask_ideal_band(int width, int height, double frequency_cutoff_x, double frequency_cutoff_y, double radius, VOption options)
+VImage mask_ideal_band(int width, int height, double frequency_cutoff_x, double frequency_cutoff_y, double radius, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_ideal_band",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1152,11 +1152,11 @@ VImage mask_ideal_band(int width, int height, double frequency_cutoff_x, double 
 	return output;
 }
 
-VImage mask_butterworth(int width, int height, double order, double frequency_cutoff, double amplitude_cutoff, VOption options)
+VImage mask_butterworth(int width, int height, double order, double frequency_cutoff, double amplitude_cutoff, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_butterworth",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1167,11 +1167,11 @@ VImage mask_butterworth(int width, int height, double order, double frequency_cu
 	return output;
 }
 
-VImage mask_butterworth_ring(int width, int height, double order, double frequency_cutoff, double amplitude_cutoff, double ringwidth, VOption options)
+VImage mask_butterworth_ring(int width, int height, double order, double frequency_cutoff, double amplitude_cutoff, double ringwidth, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_butterworth_ring",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1183,11 +1183,11 @@ VImage mask_butterworth_ring(int width, int height, double order, double frequen
 	return output;
 }
 
-VImage mask_butterworth_band(int width, int height, double order, double frequency_cutoff_x, double frequency_cutoff_y, double radius, double amplitude_cutoff, VOption options)
+VImage mask_butterworth_band(int width, int height, double order, double frequency_cutoff_x, double frequency_cutoff_y, double radius, double amplitude_cutoff, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_butterworth_band",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1200,11 +1200,11 @@ VImage mask_butterworth_band(int width, int height, double order, double frequen
 	return output;
 }
 
-VImage mask_gaussian(int width, int height, double frequency_cutoff, double amplitude_cutoff, VOption options)
+VImage mask_gaussian(int width, int height, double frequency_cutoff, double amplitude_cutoff, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_gaussian",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1214,11 +1214,11 @@ VImage mask_gaussian(int width, int height, double frequency_cutoff, double ampl
 	return output;
 }
 
-VImage mask_gaussian_ring(int width, int height, double frequency_cutoff, double amplitude_cutoff, double ringwidth, VOption options)
+VImage mask_gaussian_ring(int width, int height, double frequency_cutoff, double amplitude_cutoff, double ringwidth, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_gaussian_ring",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1229,11 +1229,11 @@ VImage mask_gaussian_ring(int width, int height, double frequency_cutoff, double
 	return output;
 }
 
-VImage mask_gaussian_band(int width, int height, double frequency_cutoff_x, double frequency_cutoff_y, double radius, double amplitude_cutoff, VOption options)
+VImage mask_gaussian_band(int width, int height, double frequency_cutoff_x, double frequency_cutoff_y, double radius, double amplitude_cutoff, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_gaussian_band",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1245,11 +1245,11 @@ VImage mask_gaussian_band(int width, int height, double frequency_cutoff_x, doub
 	return output;
 }
 
-VImage mask_fractal(int width, int height, double fractal_dimension, VOption options)
+VImage mask_fractal(int width, int height, double fractal_dimension, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mask_fractal",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1258,53 +1258,53 @@ VImage mask_fractal(int width, int height, double fractal_dimension, VOption opt
 	return output;
 }
 
-VImage buildlut(VImage input, VOption options)
+VImage buildlut(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("buildlut",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage invertlut(VImage input, VOption options)
+VImage invertlut(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("invertlut",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage tonelut(VOption options)
+VImage tonelut(VOption options = VOption())
 {
 	VImage output;
 	baseOp("tonelut",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage identity(VOption options)
+VImage identity(VOption options = VOption())
 {
 	VImage output;
 	baseOp("identity",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage fractsurf(int width, int height, double fractal_dimension, VOption options)
+VImage fractsurf(int width, int height, double fractal_dimension, VOption options = VOption())
 {
 	VImage output;
 	baseOp("fractsurf",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1313,11 +1313,11 @@ VImage fractsurf(int width, int height, double fractal_dimension, VOption option
 	return output;
 }
 
-VImage worley(int width, int height, VOption options)
+VImage worley(int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("worley",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1325,11 +1325,11 @@ VImage worley(int width, int height, VOption options)
 	return output;
 }
 
-VImage perlin(int width, int height, VOption options)
+VImage perlin(int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("perlin",
-		(options !is null ? options : new VOption())
+		options
 			.set("out", &output)
 			.set("width", width)
 			.set("height", height)
@@ -1337,33 +1337,33 @@ VImage perlin(int width, int height, VOption options)
 	return output;
 }
 
-VImage csvload(string filename, VOption options)
+VImage csvload(string filename, VOption options = VOption())
 {
 	VImage output;
 	baseOp("csvload",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage matrixload(string filename, VOption options)
+VImage matrixload(string filename, VOption options = VOption())
 {
 	VImage output;
 	baseOp("matrixload",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage rawload(string filename, int width, int height, int bands, VOption options)
+VImage rawload(string filename, int width, int height, int bands, VOption options = VOption())
 {
 	VImage output;
 	baseOp("rawload",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 			.set("width", width)
@@ -1373,494 +1373,229 @@ VImage rawload(string filename, int width, int height, int bands, VOption option
 	return output;
 }
 
-VImage vipsload(string filename, VOption options)
+VImage vipsload(string filename, VOption options = VOption())
 {
 	VImage output;
 	baseOp("vipsload",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage analyzeload(string filename, VOption options)
+VImage analyzeload(string filename, VOption options = VOption())
 {
 	VImage output;
 	baseOp("analyzeload",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage ppmload(string filename, VOption options)
+VImage ppmload(string filename, VOption options = VOption())
 {
 	VImage output;
 	baseOp("ppmload",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage radload(string filename, VOption options)
+VImage radload(string filename, VOption options = VOption())
 {
 	VImage output;
 	baseOp("radload",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage pdfload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("pdfload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage pdfload_buffer(VipsBlob* buffer, VOption options)
-{
-	VImage output;
-	baseOp("pdfload_buffer",
-		(options !is null ? options : new VOption())
-			.set("buffer", buffer)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage svgload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("svgload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage svgload_buffer(VipsBlob* buffer, VOption options)
-{
-	VImage output;
-	baseOp("svgload_buffer",
-		(options !is null ? options : new VOption())
-			.set("buffer", buffer)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage gifload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("gifload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage gifload_buffer(VipsBlob* buffer, VOption options)
-{
-	VImage output;
-	baseOp("gifload_buffer",
-		(options !is null ? options : new VOption())
-			.set("buffer", buffer)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage pngload(string filename, VOption options)
+VImage pngload(string filename, VOption options = VOption())
 {
 	VImage output;
 	baseOp("pngload",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage pngload_buffer(VipsBlob* buffer, VOption options)
+VImage pngload_buffer(VipsBlob* buffer, VOption options = VOption())
 {
 	VImage output;
 	baseOp("pngload_buffer",
-		(options !is null ? options : new VOption())
+		options
 			.set("buffer", buffer)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage matload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("matload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage jpegload(string filename, VOption options)
+VImage jpegload(string filename, VOption options = VOption())
 {
 	VImage output;
 	baseOp("jpegload",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage jpegload_buffer(VipsBlob* buffer, VOption options)
+VImage jpegload_buffer(VipsBlob* buffer, VOption options = VOption())
 {
 	VImage output;
 	baseOp("jpegload_buffer",
-		(options !is null ? options : new VOption())
+		options
 			.set("buffer", buffer)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage webpload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("webpload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage webpload_buffer(VipsBlob* buffer, VOption options)
-{
-	VImage output;
-	baseOp("webpload_buffer",
-		(options !is null ? options : new VOption())
-			.set("buffer", buffer)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage tiffload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("tiffload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage tiffload_buffer(VipsBlob* buffer, VOption options)
-{
-	VImage output;
-	baseOp("tiffload_buffer",
-		(options !is null ? options : new VOption())
-			.set("buffer", buffer)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage openslideload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("openslideload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage magickload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("magickload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage magickload_buffer(VipsBlob* buffer, VOption options)
-{
-	VImage output;
-	baseOp("magickload_buffer",
-		(options !is null ? options : new VOption())
-			.set("buffer", buffer)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage fitsload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("fitsload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage openexrload(string filename, VOption options)
-{
-	VImage output;
-	baseOp("openexrload",
-		(options !is null ? options : new VOption())
-			.set("filename", filename)
-			.set("out", &output)
-	);
-	return output;
-}
-
-void csvsave(VImage input, string filename, VOption options)
+void csvsave(VImage input, string filename, VOption options = VOption())
 {
 	baseOp("csvsave",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("filename", filename)
 	);
 }
 
-void matrixsave(VImage input, string filename, VOption options)
+void matrixsave(VImage input, string filename, VOption options = VOption())
 {
 	baseOp("matrixsave",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("filename", filename)
 	);
 }
 
-void matrixprint(VImage input, VOption options)
+void matrixprint(VImage input, VOption options = VOption())
 {
 	baseOp("matrixprint",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 	);
 }
 
-void rawsave(VImage input, string filename, VOption options)
+void rawsave(VImage input, string filename, VOption options = VOption())
 {
 	baseOp("rawsave",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("filename", filename)
 	);
 }
 
-void rawsave_fd(VImage input, int fd, VOption options)
+void rawsave_fd(VImage input, int fd, VOption options = VOption())
 {
 	baseOp("rawsave_fd",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("fd", fd)
 	);
 }
 
-void vipssave(VImage input, string filename, VOption options)
+void vipssave(VImage input, string filename, VOption options = VOption())
 {
 	baseOp("vipssave",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("filename", filename)
 	);
 }
 
-void ppmsave(VImage input, string filename, VOption options)
+void ppmsave(VImage input, string filename, VOption options = VOption())
 {
 	baseOp("ppmsave",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("filename", filename)
 	);
 }
 
-void radsave(VImage input, string filename, VOption options)
+void radsave(VImage input, string filename, VOption options = VOption())
 {
 	baseOp("radsave",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("filename", filename)
 	);
 }
 
-VipsBlob* radsave_buffer(VImage input, VOption options)
+VipsBlob* radsave_buffer(VImage input, VOption options = VOption())
 {
 	VipsBlob* buffer;
 	baseOp("radsave_buffer",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("buffer", &buffer)
 	);
 	return buffer;
 }
 
-void dzsave(VImage input, string filename, VOption options)
-{
-	baseOp("dzsave",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("filename", filename)
-	);
-}
-
-VipsBlob* dzsave_buffer(VImage input, VOption options)
-{
-	VipsBlob* buffer;
-	baseOp("dzsave_buffer",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("buffer", &buffer)
-	);
-	return buffer;
-}
-
-void pngsave(VImage input, string filename, VOption options)
+void pngsave(VImage input, string filename, VOption options = VOption())
 {
 	baseOp("pngsave",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("filename", filename)
 	);
 }
 
-VipsBlob* pngsave_buffer(VImage input, VOption options)
+VipsBlob* pngsave_buffer(VImage input, VOption options = VOption())
 {
 	VipsBlob* buffer;
 	baseOp("pngsave_buffer",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("buffer", &buffer)
 	);
 	return buffer;
 }
 
-void jpegsave(VImage input, string filename, VOption options)
+void jpegsave(VImage input, string filename, VOption options = VOption())
 {
 	baseOp("jpegsave",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("filename", filename)
 	);
 }
 
-VipsBlob* jpegsave_buffer(VImage input, VOption options)
+VipsBlob* jpegsave_buffer(VImage input, VOption options = VOption())
 {
 	VipsBlob* buffer;
 	baseOp("jpegsave_buffer",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("buffer", &buffer)
 	);
 	return buffer;
 }
 
-void jpegsave_mime(VImage input, VOption options)
+void jpegsave_mime(VImage input, VOption options = VOption())
 {
 	baseOp("jpegsave_mime",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 	);
 }
 
-void webpsave(VImage input, string filename, VOption options)
-{
-	baseOp("webpsave",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("filename", filename)
-	);
-}
-
-VipsBlob* webpsave_buffer(VImage input, VOption options)
-{
-	VipsBlob* buffer;
-	baseOp("webpsave_buffer",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("buffer", &buffer)
-	);
-	return buffer;
-}
-
-void tiffsave(VImage input, string filename, VOption options)
-{
-	baseOp("tiffsave",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("filename", filename)
-	);
-}
-
-VipsBlob* tiffsave_buffer(VImage input, VOption options)
-{
-	VipsBlob* buffer;
-	baseOp("tiffsave_buffer",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("buffer", &buffer)
-	);
-	return buffer;
-}
-
-void magicksave(VImage input, string filename, VOption options)
-{
-	baseOp("magicksave",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("filename", filename)
-	);
-}
-
-VipsBlob* magicksave_buffer(VImage input, VOption options)
-{
-	VipsBlob* buffer;
-	baseOp("magicksave_buffer",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("buffer", &buffer)
-	);
-	return buffer;
-}
-
-void fitssave(VImage input, string filename, VOption options)
-{
-	baseOp("fitssave",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("filename", filename)
-	);
-}
-
-VImage thumbnail(string filename, int width, VOption options)
+VImage thumbnail(string filename, int width, VOption options = VOption())
 {
 	VImage output;
 	baseOp("thumbnail",
-		(options !is null ? options : new VOption())
+		options
 			.set("filename", filename)
 			.set("out", &output)
 			.set("width", width)
@@ -1868,11 +1603,11 @@ VImage thumbnail(string filename, int width, VOption options)
 	return output;
 }
 
-VImage thumbnail_buffer(VipsBlob* buffer, int width, VOption options)
+VImage thumbnail_buffer(VipsBlob* buffer, int width, VOption options = VOption())
 {
 	VImage output;
 	baseOp("thumbnail_buffer",
-		(options !is null ? options : new VOption())
+		options
 			.set("buffer", buffer)
 			.set("out", &output)
 			.set("width", width)
@@ -1880,11 +1615,11 @@ VImage thumbnail_buffer(VipsBlob* buffer, int width, VOption options)
 	return output;
 }
 
-VImage thumbnail_image(VImage input, int width, VOption options)
+VImage thumbnail_image(VImage input, int width, VOption options = VOption())
 {
 	VImage output;
 	baseOp("thumbnail_image",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("width", width)
@@ -1892,11 +1627,11 @@ VImage thumbnail_image(VImage input, int width, VOption options)
 	return output;
 }
 
-VImage mapim(VImage input, VImage index, VOption options)
+VImage mapim(VImage input, VImage index, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mapim",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("index", index)
@@ -1904,11 +1639,11 @@ VImage mapim(VImage input, VImage index, VOption options)
 	return output;
 }
 
-VImage shrink(VImage input, double hshrink, double vshrink, VOption options)
+VImage shrink(VImage input, double hshrink, double vshrink, VOption options = VOption())
 {
 	VImage output;
 	baseOp("shrink",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("hshrink", hshrink)
@@ -1917,11 +1652,11 @@ VImage shrink(VImage input, double hshrink, double vshrink, VOption options)
 	return output;
 }
 
-VImage shrinkh(VImage input, int hshrink, VOption options)
+VImage shrinkh(VImage input, int hshrink, VOption options = VOption())
 {
 	VImage output;
 	baseOp("shrinkh",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("hshrink", hshrink)
@@ -1929,11 +1664,11 @@ VImage shrinkh(VImage input, int hshrink, VOption options)
 	return output;
 }
 
-VImage shrinkv(VImage input, int vshrink, VOption options)
+VImage shrinkv(VImage input, int vshrink, VOption options = VOption())
 {
 	VImage output;
 	baseOp("shrinkv",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("vshrink", vshrink)
@@ -1941,11 +1676,11 @@ VImage shrinkv(VImage input, int vshrink, VOption options)
 	return output;
 }
 
-VImage reduceh(VImage input, double hshrink, VOption options)
+VImage reduceh(VImage input, double hshrink, VOption options = VOption())
 {
 	VImage output;
 	baseOp("reduceh",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("hshrink", hshrink)
@@ -1953,11 +1688,11 @@ VImage reduceh(VImage input, double hshrink, VOption options)
 	return output;
 }
 
-VImage reducev(VImage input, double vshrink, VOption options)
+VImage reducev(VImage input, double vshrink, VOption options = VOption())
 {
 	VImage output;
 	baseOp("reducev",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("vshrink", vshrink)
@@ -1965,11 +1700,11 @@ VImage reducev(VImage input, double vshrink, VOption options)
 	return output;
 }
 
-VImage reduce(VImage input, double hshrink, double vshrink, VOption options)
+VImage reduce(VImage input, double hshrink, double vshrink, VOption options = VOption())
 {
 	VImage output;
 	baseOp("reduce",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("hshrink", hshrink)
@@ -1978,11 +1713,11 @@ VImage reduce(VImage input, double hshrink, double vshrink, VOption options)
 	return output;
 }
 
-VImage quadratic(VImage input, VImage coeff, VOption options)
+VImage quadratic(VImage input, VImage coeff, VOption options = VOption())
 {
 	VImage output;
 	baseOp("quadratic",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("coeff", coeff)
@@ -1990,11 +1725,11 @@ VImage quadratic(VImage input, VImage coeff, VOption options)
 	return output;
 }
 
-VImage affine(VImage input, double[] matrix, VOption options)
+VImage affine(VImage input, double[] matrix, VOption options = VOption())
 {
 	VImage output;
 	baseOp("affine",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("matrix", matrix)
@@ -2002,22 +1737,22 @@ VImage affine(VImage input, double[] matrix, VOption options)
 	return output;
 }
 
-VImage similarity(VImage input, VOption options)
+VImage similarity(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("similarity",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage rotate(VImage input, double angle, VOption options)
+VImage rotate(VImage input, double angle, VOption options = VOption())
 {
 	VImage output;
 	baseOp("rotate",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("angle", angle)
@@ -2025,11 +1760,11 @@ VImage rotate(VImage input, double angle, VOption options)
 	return output;
 }
 
-VImage resize(VImage input, double scale, VOption options)
+VImage resize(VImage input, double scale, VOption options = VOption())
 {
 	VImage output;
 	baseOp("resize",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("scale", scale)
@@ -2037,11 +1772,11 @@ VImage resize(VImage input, double scale, VOption options)
 	return output;
 }
 
-VImage colourspace(VImage input, VipsInterpretation space, VOption options)
+VImage colourspace(VImage input, VipsInterpretation space, VOption options = VOption())
 {
 	VImage output;
 	baseOp("colourspace",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("space", space)
@@ -2049,276 +1784,242 @@ VImage colourspace(VImage input, VipsInterpretation space, VOption options)
 	return output;
 }
 
-VImage Lab2XYZ(VImage input, VOption options)
+VImage Lab2XYZ(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("Lab2XYZ",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage XYZ2Lab(VImage input, VOption options)
+VImage XYZ2Lab(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("XYZ2Lab",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage Lab2LCh(VImage input, VOption options)
+VImage Lab2LCh(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("Lab2LCh",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage LCh2Lab(VImage input, VOption options)
+VImage LCh2Lab(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("LCh2Lab",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage LCh2CMC(VImage input, VOption options)
+VImage LCh2CMC(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("LCh2CMC",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage CMC2LCh(VImage input, VOption options)
+VImage CMC2LCh(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("CMC2LCh",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage XYZ2Yxy(VImage input, VOption options)
+VImage XYZ2Yxy(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("XYZ2Yxy",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage Yxy2XYZ(VImage input, VOption options)
+VImage Yxy2XYZ(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("Yxy2XYZ",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage scRGB2XYZ(VImage input, VOption options)
+VImage scRGB2XYZ(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("scRGB2XYZ",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage XYZ2scRGB(VImage input, VOption options)
+VImage XYZ2scRGB(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("XYZ2scRGB",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage LabQ2Lab(VImage input, VOption options)
+VImage LabQ2Lab(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("LabQ2Lab",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage Lab2LabQ(VImage input, VOption options)
+VImage Lab2LabQ(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("Lab2LabQ",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage LabQ2LabS(VImage input, VOption options)
+VImage LabQ2LabS(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("LabQ2LabS",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage LabS2LabQ(VImage input, VOption options)
+VImage LabS2LabQ(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("LabS2LabQ",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage LabS2Lab(VImage input, VOption options)
+VImage LabS2Lab(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("LabS2Lab",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage Lab2LabS(VImage input, VOption options)
+VImage Lab2LabS(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("Lab2LabS",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage rad2float(VImage input, VOption options)
+VImage rad2float(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("rad2float",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage float2rad(VImage input, VOption options)
+VImage float2rad(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("float2rad",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage LabQ2sRGB(VImage input, VOption options)
+VImage LabQ2sRGB(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("LabQ2sRGB",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage sRGB2HSV(VImage input, VOption options)
+VImage sRGB2HSV(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("sRGB2HSV",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage HSV2sRGB(VImage input, VOption options)
+VImage HSV2sRGB(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("HSV2sRGB",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage icc_import(VImage input, VOption options)
-{
-	VImage output;
-	baseOp("icc_import",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage icc_export(VImage input, VOption options)
-{
-	VImage output;
-	baseOp("icc_export",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("out", &output)
-	);
-	return output;
-}
-
-VImage icc_transform(VImage input, string output_profile, VOption options)
-{
-	VImage output;
-	baseOp("icc_transform",
-		(options !is null ? options : new VOption())
-			.set("in", input)
-			.set("out", &output)
-			.set("output-profile", output_profile)
-	);
-	return output;
-}
-
-VImage dE76(VImage left, VImage right, VOption options)
+VImage dE76(VImage left, VImage right, VOption options = VOption())
 {
 	VImage output;
 	baseOp("dE76",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -2326,11 +2027,11 @@ VImage dE76(VImage left, VImage right, VOption options)
 	return output;
 }
 
-VImage dE00(VImage left, VImage right, VOption options)
+VImage dE00(VImage left, VImage right, VOption options = VOption())
 {
 	VImage output;
 	baseOp("dE00",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -2338,11 +2039,11 @@ VImage dE00(VImage left, VImage right, VOption options)
 	return output;
 }
 
-VImage dECMC(VImage left, VImage right, VOption options)
+VImage dECMC(VImage left, VImage right, VOption options = VOption())
 {
 	VImage output;
 	baseOp("dECMC",
-		(options !is null ? options : new VOption())
+		options
 			.set("left", left)
 			.set("right", right)
 			.set("out", &output)
@@ -2350,44 +2051,44 @@ VImage dECMC(VImage left, VImage right, VOption options)
 	return output;
 }
 
-VImage sRGB2scRGB(VImage input, VOption options)
+VImage sRGB2scRGB(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("sRGB2scRGB",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage scRGB2BW(VImage input, VOption options)
+VImage scRGB2BW(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("scRGB2BW",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage scRGB2sRGB(VImage input, VOption options)
+VImage scRGB2sRGB(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("scRGB2sRGB",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage maplut(VImage input, VImage lut, VOption options)
+VImage maplut(VImage input, VImage lut, VOption options = VOption())
 {
 	VImage output;
 	baseOp("maplut",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("lut", lut)
@@ -2395,11 +2096,11 @@ VImage maplut(VImage input, VImage lut, VOption options)
 	return output;
 }
 
-int percent(VImage input, double percent, VOption options)
+int percent(VImage input, double percent, VOption options = VOption())
 {
 	int threshold;
 	baseOp("percent",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("percent", percent)
 			.set("threshold", &threshold)
@@ -2407,11 +2108,11 @@ int percent(VImage input, double percent, VOption options)
 	return threshold;
 }
 
-VImage stdif(VImage input, int width, int height, VOption options)
+VImage stdif(VImage input, int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("stdif",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("width", width)
@@ -2420,22 +2121,22 @@ VImage stdif(VImage input, int width, int height, VOption options)
 	return output;
 }
 
-VImage hist_cum(VImage input, VOption options)
+VImage hist_cum(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hist_cum",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage hist_match(VImage input, VImage vipsRef, VOption options)
+VImage hist_match(VImage input, VImage vipsRef, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hist_match",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("ref", vipsRef)
 			.set("out", &output)
@@ -2443,44 +2144,44 @@ VImage hist_match(VImage input, VImage vipsRef, VOption options)
 	return output;
 }
 
-VImage hist_norm(VImage input, VOption options)
+VImage hist_norm(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hist_norm",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage hist_equal(VImage input, VOption options)
+VImage hist_equal(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hist_equal",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage hist_plot(VImage input, VOption options)
+VImage hist_plot(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hist_plot",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage hist_local(VImage input, int width, int height, VOption options)
+VImage hist_local(VImage input, int width, int height, VOption options = VOption())
 {
 	VImage output;
 	baseOp("hist_local",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("width", width)
@@ -2489,33 +2190,33 @@ VImage hist_local(VImage input, int width, int height, VOption options)
 	return output;
 }
 
-bool hist_ismonotonic(VImage input, VOption options)
+bool hist_ismonotonic(VImage input, VOption options = VOption())
 {
 	bool monotonic;
 	baseOp("hist_ismonotonic",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("monotonic", &monotonic)
 	);
 	return monotonic;
 }
 
-double hist_entropy(VImage input, VOption options)
+double hist_entropy(VImage input, VOption options = VOption())
 {
 	double output;
 	baseOp("hist_entropy",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage conv(VImage input, VImage mask, VOption options)
+VImage conv(VImage input, VImage mask, VOption options = VOption())
 {
 	VImage output;
 	baseOp("conv",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("mask", mask)
@@ -2523,11 +2224,11 @@ VImage conv(VImage input, VImage mask, VOption options)
 	return output;
 }
 
-VImage conva(VImage input, VImage mask, VOption options)
+VImage conva(VImage input, VImage mask, VOption options = VOption())
 {
 	VImage output;
 	baseOp("conva",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("mask", mask)
@@ -2535,11 +2236,11 @@ VImage conva(VImage input, VImage mask, VOption options)
 	return output;
 }
 
-VImage convf(VImage input, VImage mask, VOption options)
+VImage convf(VImage input, VImage mask, VOption options = VOption())
 {
 	VImage output;
 	baseOp("convf",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("mask", mask)
@@ -2547,11 +2248,11 @@ VImage convf(VImage input, VImage mask, VOption options)
 	return output;
 }
 
-VImage convi(VImage input, VImage mask, VOption options)
+VImage convi(VImage input, VImage mask, VOption options = VOption())
 {
 	VImage output;
 	baseOp("convi",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("mask", mask)
@@ -2559,11 +2260,11 @@ VImage convi(VImage input, VImage mask, VOption options)
 	return output;
 }
 
-VImage compass(VImage input, VImage mask, VOption options)
+VImage compass(VImage input, VImage mask, VOption options = VOption())
 {
 	VImage output;
 	baseOp("compass",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("mask", mask)
@@ -2571,11 +2272,11 @@ VImage compass(VImage input, VImage mask, VOption options)
 	return output;
 }
 
-VImage convsep(VImage input, VImage mask, VOption options)
+VImage convsep(VImage input, VImage mask, VOption options = VOption())
 {
 	VImage output;
 	baseOp("convsep",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("mask", mask)
@@ -2583,11 +2284,11 @@ VImage convsep(VImage input, VImage mask, VOption options)
 	return output;
 }
 
-VImage convasep(VImage input, VImage mask, VOption options)
+VImage convasep(VImage input, VImage mask, VOption options = VOption())
 {
 	VImage output;
 	baseOp("convasep",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("mask", mask)
@@ -2595,11 +2296,11 @@ VImage convasep(VImage input, VImage mask, VOption options)
 	return output;
 }
 
-VImage fastcor(VImage input, VImage vipsRef, VOption options)
+VImage fastcor(VImage input, VImage vipsRef, VOption options = VOption())
 {
 	VImage output;
 	baseOp("fastcor",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("ref", vipsRef)
 			.set("out", &output)
@@ -2607,11 +2308,11 @@ VImage fastcor(VImage input, VImage vipsRef, VOption options)
 	return output;
 }
 
-VImage spcor(VImage input, VImage vipsRef, VOption options)
+VImage spcor(VImage input, VImage vipsRef, VOption options = VOption())
 {
 	VImage output;
 	baseOp("spcor",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("ref", vipsRef)
 			.set("out", &output)
@@ -2619,22 +2320,22 @@ VImage spcor(VImage input, VImage vipsRef, VOption options)
 	return output;
 }
 
-VImage sharpen(VImage input, VOption options)
+VImage sharpen(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("sharpen",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage gaussblur(VImage input, double sigma, VOption options)
+VImage gaussblur(VImage input, double sigma, VOption options = VOption())
 {
 	VImage output;
 	baseOp("gaussblur",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("sigma", sigma)
@@ -2642,55 +2343,55 @@ VImage gaussblur(VImage input, double sigma, VOption options)
 	return output;
 }
 
-VImage canny(VImage input, VOption options)
+VImage canny(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("canny",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage sobel(VImage input, VOption options)
+VImage sobel(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("sobel",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage fwfft(VImage input, VOption options)
+VImage fwfft(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("fwfft",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage invfft(VImage input, VOption options)
+VImage invfft(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("invfft",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage freqmult(VImage input, VImage mask, VOption options)
+VImage freqmult(VImage input, VImage mask, VOption options = VOption())
 {
 	VImage output;
 	baseOp("freqmult",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("mask", mask)
 			.set("out", &output)
@@ -2698,22 +2399,22 @@ VImage freqmult(VImage input, VImage mask, VOption options)
 	return output;
 }
 
-VImage spectrum(VImage input, VOption options)
+VImage spectrum(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("spectrum",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-VImage phasecor(VImage input, VImage in2, VOption options)
+VImage phasecor(VImage input, VImage in2, VOption options = VOption())
 {
 	VImage output;
 	baseOp("phasecor",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("in2", in2)
 			.set("out", &output)
@@ -2721,11 +2422,11 @@ VImage phasecor(VImage input, VImage in2, VOption options)
 	return output;
 }
 
-VImage morph(VImage input, VImage mask, VipsOperationMorphology morph, VOption options)
+VImage morph(VImage input, VImage mask, VipsOperationMorphology morph, VOption options = VOption())
 {
 	VImage output;
 	baseOp("morph",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("mask", mask)
@@ -2734,11 +2435,11 @@ VImage morph(VImage input, VImage mask, VipsOperationMorphology morph, VOption o
 	return output;
 }
 
-VImage rank(VImage input, int width, int height, int index, VOption options)
+VImage rank(VImage input, int width, int height, int index, VOption options = VOption())
 {
 	VImage output;
 	baseOp("rank",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 			.set("width", width)
@@ -2748,11 +2449,11 @@ VImage rank(VImage input, int width, int height, int index, VOption options)
 	return output;
 }
 
-double countlines(VImage input, VipsDirection direction, VOption options)
+double countlines(VImage input, VipsDirection direction, VOption options = VOption())
 {
 	double nolines;
 	baseOp("countlines",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("nolines", &nolines)
 			.set("direction", direction)
@@ -2760,32 +2461,32 @@ double countlines(VImage input, VipsDirection direction, VOption options)
 	return nolines;
 }
 
-VImage labelregions(VImage input, VOption options)
+VImage labelregions(VImage input, VOption options = VOption())
 {
 	VImage mask;
 	baseOp("labelregions",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("mask", &mask)
 	);
 	return mask;
 }
 
-VImage fill_nearest(VImage input, VOption options)
+VImage fill_nearest(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("fill_nearest",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);
 	return output;
 }
 
-void draw_rect(VImage image, double[] ink, int left, int top, int width, int height, VOption options)
+void draw_rect(VImage image, double[] ink, int left, int top, int width, int height, VOption options = VOption())
 {
 	baseOp("draw_rect",
-		(options !is null ? options : new VOption())
+		options
 			.set("image", image)
 			.set("ink", ink)
 			.set("left", left)
@@ -2795,10 +2496,10 @@ void draw_rect(VImage image, double[] ink, int left, int top, int width, int hei
 	);
 }
 
-void draw_mask(VImage image, double[] ink, VImage mask, int x, int y, VOption options)
+void draw_mask(VImage image, double[] ink, VImage mask, int x, int y, VOption options = VOption())
 {
 	baseOp("draw_mask",
-		(options !is null ? options : new VOption())
+		options
 			.set("image", image)
 			.set("ink", ink)
 			.set("mask", mask)
@@ -2807,10 +2508,10 @@ void draw_mask(VImage image, double[] ink, VImage mask, int x, int y, VOption op
 	);
 }
 
-void draw_line(VImage image, double[] ink, int x1, int y1, int x2, int y2, VOption options)
+void draw_line(VImage image, double[] ink, int x1, int y1, int x2, int y2, VOption options = VOption())
 {
 	baseOp("draw_line",
-		(options !is null ? options : new VOption())
+		options
 			.set("image", image)
 			.set("ink", ink)
 			.set("x1", x1)
@@ -2820,10 +2521,10 @@ void draw_line(VImage image, double[] ink, int x1, int y1, int x2, int y2, VOpti
 	);
 }
 
-void draw_circle(VImage image, double[] ink, int cx, int cy, int radius, VOption options)
+void draw_circle(VImage image, double[] ink, int cx, int cy, int radius, VOption options = VOption())
 {
 	baseOp("draw_circle",
-		(options !is null ? options : new VOption())
+		options
 			.set("image", image)
 			.set("ink", ink)
 			.set("cx", cx)
@@ -2832,10 +2533,10 @@ void draw_circle(VImage image, double[] ink, int cx, int cy, int radius, VOption
 	);
 }
 
-void draw_flood(VImage image, double[] ink, int x, int y, VOption options)
+void draw_flood(VImage image, double[] ink, int x, int y, VOption options = VOption())
 {
 	baseOp("draw_flood",
-		(options !is null ? options : new VOption())
+		options
 			.set("image", image)
 			.set("ink", ink)
 			.set("x", x)
@@ -2843,10 +2544,10 @@ void draw_flood(VImage image, double[] ink, int x, int y, VOption options)
 	);
 }
 
-void draw_image(VImage image, VImage sub, int x, int y, VOption options)
+void draw_image(VImage image, VImage sub, int x, int y, VOption options = VOption())
 {
 	baseOp("draw_image",
-		(options !is null ? options : new VOption())
+		options
 			.set("image", image)
 			.set("sub", sub)
 			.set("x", x)
@@ -2854,10 +2555,10 @@ void draw_image(VImage image, VImage sub, int x, int y, VOption options)
 	);
 }
 
-void draw_smudge(VImage image, int left, int top, int width, int height, VOption options)
+void draw_smudge(VImage image, int left, int top, int width, int height, VOption options = VOption())
 {
 	baseOp("draw_smudge",
-		(options !is null ? options : new VOption())
+		options
 			.set("image", image)
 			.set("left", left)
 			.set("top", top)
@@ -2866,11 +2567,11 @@ void draw_smudge(VImage image, int left, int top, int width, int height, VOption
 	);
 }
 
-VImage merge(VImage vipsRef, VImage sec, VipsDirection direction, int dx, int dy, VOption options)
+VImage merge(VImage vipsRef, VImage sec, VipsDirection direction, int dx, int dy, VOption options = VOption())
 {
 	VImage output;
 	baseOp("merge",
-		(options !is null ? options : new VOption())
+		options
 			.set("ref", vipsRef)
 			.set("sec", sec)
 			.set("out", &output)
@@ -2881,11 +2582,11 @@ VImage merge(VImage vipsRef, VImage sec, VipsDirection direction, int dx, int dy
 	return output;
 }
 
-VImage mosaic(VImage vipsRef, VImage sec, VipsDirection direction, int xref, int yref, int xsec, int ysec, VOption options)
+VImage mosaic(VImage vipsRef, VImage sec, VipsDirection direction, int xref, int yref, int xsec, int ysec, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mosaic",
-		(options !is null ? options : new VOption())
+		options
 			.set("ref", vipsRef)
 			.set("sec", sec)
 			.set("out", &output)
@@ -2898,11 +2599,11 @@ VImage mosaic(VImage vipsRef, VImage sec, VipsDirection direction, int xref, int
 	return output;
 }
 
-VImage mosaic1(VImage vipsRef, VImage sec, VipsDirection direction, int xr1, int yr1, int xs1, int ys1, int xr2, int yr2, int xs2, int ys2, VOption options)
+VImage mosaic1(VImage vipsRef, VImage sec, VipsDirection direction, int xr1, int yr1, int xs1, int ys1, int xr2, int yr2, int xs2, int ys2, VOption options = VOption())
 {
 	VImage output;
 	baseOp("mosaic1",
-		(options !is null ? options : new VOption())
+		options
 			.set("ref", vipsRef)
 			.set("sec", sec)
 			.set("out", &output)
@@ -2919,11 +2620,11 @@ VImage mosaic1(VImage vipsRef, VImage sec, VipsDirection direction, int xr1, int
 	return output;
 }
 
-VImage match(VImage vipsRef, VImage sec, int xr1, int yr1, int xs1, int ys1, int xr2, int yr2, int xs2, int ys2, VOption options)
+VImage match(VImage vipsRef, VImage sec, int xr1, int yr1, int xs1, int ys1, int xr2, int yr2, int xs2, int ys2, VOption options = VOption())
 {
 	VImage output;
 	baseOp("match",
-		(options !is null ? options : new VOption())
+		options
 			.set("ref", vipsRef)
 			.set("sec", sec)
 			.set("out", &output)
@@ -2939,11 +2640,11 @@ VImage match(VImage vipsRef, VImage sec, int xr1, int yr1, int xs1, int ys1, int
 	return output;
 }
 
-VImage globalbalance(VImage input, VOption options)
+VImage globalbalance(VImage input, VOption options = VOption())
 {
 	VImage output;
 	baseOp("globalbalance",
-		(options !is null ? options : new VOption())
+		options
 			.set("in", input)
 			.set("out", &output)
 	);

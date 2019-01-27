@@ -7,26 +7,41 @@ import gobject.Value;
 import gobject.ObjectG;
 import gobject.c.types : GObject;
 
-class VImage : ObjectG{
+struct VImage{
+package:
+    VipsImage* img;
 public:
     this(VipsImage* source, bool isOwned = false)
     {
-        super(cast(GObject*)source, isOwned);
+        img = source;
+        if(!isOwned){
+            g_object_ref(img);
+        }
     }
 
     ~this()
     {
-        import std.stdio:writeln;
-        writeln("Destructing image");
+        if(img !is null){
+            g_object_unref(img);
+        }
     }
+
+    this(this)
+    {
+        g_object_ref(img);
+    }
+
+    alias img this;
 
     void saveToFile(string file)
     {
         import std.string : fromStringz, toStringz;
         import std.typecons:scoped;
         auto opName = vips_foreign_find_save(file.toStringz).fromStringz;
-        auto options = scoped!VOption();
-        // auto options = new VOption();
+        auto options = VOption();
+        options
+            .set("in", this)
+            .set("filename", file);
         options.set("in", this).set("filename", file);
         baseOp(opName, options);
     }
@@ -37,9 +52,10 @@ public:
         import std.typecons : scoped;
         VImage image;
         auto opName = vips_foreign_find_load(file.toStringz).fromStringz;
-        auto options = scoped!VOption();
-        // auto options = new VOption();
-        options.set("filename", file).set("out", &image);
+        auto options = VOption();
+        options
+            .set("filename", file)
+            .set("out", &image);
         baseOp(opName, options);
         return image;
     }
@@ -48,33 +64,29 @@ public:
     {
         return vips_image_get_type();
     }
-
-    VipsImage* getImageStruct() const
-    {
-        return null;
-    }
 }
 
-package void baseOp(const(char)[] name, VOption options)
+package void baseOp(const(char)[] name, ref VOption options)
 {
     import std.exception : enforce;
     import std.string : fromStringz, toStringz;
     import std.typecons : Unique;
+    import vips.operation : VOperation;
 
-    auto op = new ObjectG(
-        cast(GObject*)vips_operation_new(name.toStringz),
-        true
-    );
-    options.setInputs(op);
-    auto op2 = ObjectG.getDObject!ObjectG(
-        cast(GObject*)vips_cache_operation_build(
-            cast(VipsOperation*)op.getObjectGStruct),
-        true
-    );
-    if(op2 is op){
-        op.unref();
-    }
-    options.readOutputs(op);
+    auto op = VOperation(name);
+    // ObjectG(
+        // cast(GObject*)vips_operation_new(name.toStringz),
+        // true
+    // );
+    op.build(options);
+    // options.setInputs(op);
+    // op.build();
+    // auto op2 = ObjectG.getDObject!ObjectG(
+        // cast(GObject*)vips_cache_operation_build(
+            // cast(VipsOperation*)op.getObjectGStruct),
+        // true
+    // );
+    // options.readOutputs(op);
 }
 
 unittest
@@ -86,26 +98,27 @@ unittest
     import std.datetime.stopwatch : AutoStart, StopWatch;
     import std.stdio : writeln, writefln;
 
-    int getRC(VImage image)
-    {
-        return image.getObjectGStruct().refCount;
-    }
+    // int getRC(VImage image)
+    // {
+        // return image.getObjectGStruct().refCount;
+    // }
 
     vips_init("test");
     scope(exit) vips_shutdown();
-    // vips_leak_set(true);
+    vips_cache_set_max(0);
+    vips_leak_set(true);
     VImage image = VImage.fromFile("t.jpg");
-    // StopWatch sw = StopWatch(AutoStart.yes);
+    StopWatch sw = StopWatch(AutoStart.yes);
     // writefln("image refCount: %d", getRC(image));
-    foreach(i; 200 .. 10_000)
+    foreach(i; 200 .. 300_00)
     {
-        // auto image = VImage.fromFile("t.jpg");
-        // writefln("image refCount: %d", getRC(image));
         // writeln("Iteration ", i);
-        image = image.invert(null).rotate(i % 4 * 90, null);
-        auto thumb = image.thumbnail_image(i % 10 * 20 + 200, null);
+        auto mid = image.invert().rotate(i % 4 * 90);
+        // auto mid = invert(image);
+        // .rotate((i * 30) % 360);
+        auto thumb = mid.thumbnail_image(i % 10 * 20 + 200);
         // writefln("Generated thunbnail. Took %d ms", sw.peek.total!"msecs");
-        // sw.reset();
+        sw.reset();
     }
     /+
     writefln("Loaded img RC: %d", getRC(image));

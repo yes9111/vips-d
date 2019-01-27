@@ -49,9 +49,12 @@ extern(C)
     int vips_object_build(VipsObject* obj);
 
     // GObject functions
-    int g_object_unref(void* p);
-    void g_object_set_property(GObject*, const char*, GValue*);
+    void* g_object_ref(void* p);
+    void g_object_unref(void* p);
+    void g_object_set_property(GObject*, const(char)*, GValue*);
+    void g_object_get_property(GObject*, const(char)*, GValue*);
     GObject* g_value_get_object(GValue*);
+    void g_value_set_object(GValue*, GObject*);
 }
 
 
