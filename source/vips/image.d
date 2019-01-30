@@ -31,8 +31,6 @@ public:
         g_object_ref(img);
     }
 
-    alias img this;
-
     void saveToFile(string file)
     {
         import std.string : fromStringz, toStringz;

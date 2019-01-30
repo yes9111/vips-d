@@ -47,6 +47,7 @@ public:
     {
         options.setInputs(this);
         auto op = VOperation(vips_cache_operation_build(operation), true);
+        scope(exit) vips_object_unref_outputs(op.operation);
         options.readOutputs(op);
     }
 

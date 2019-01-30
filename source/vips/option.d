@@ -179,8 +179,9 @@ public:
                 immutable type = option.value.getValueStruct().gType;
                 if (type == vips_image_get_type())
                 {
-                    auto obj = cast(VipsImage*)g_value_get_object(option.value.getValueStruct);
-                    *(option.output.vImage) = VImage(obj, true);
+                    auto obj = cast(VipsImage*)
+                        g_value_get_object(option.value.getValueStruct);
+                    *(option.output.vImage) = VImage(obj);
                 }
                 else if (type == GType.INT)
                 {
