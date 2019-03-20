@@ -33,8 +33,11 @@ public:
 
     void saveToFile(string file)
     {
+        import std.exception : enforce;
         import std.string : fromStringz, toStringz;
+
         auto opName = vips_foreign_find_save(file.toStringz).fromStringz;
+        enforce(opName !is null, "Could not find appropriate VIPS operation to save with for for target file name: " ~ file);
         auto options = VOption();
         options
             .set("in", this)
@@ -44,10 +47,12 @@ public:
 
     static VImage fromFile(string file)
     {
+        import std.exception : enforce;
         import std.string : fromStringz, toStringz;
         import std.typecons : scoped;
         VImage image;
         auto opName = vips_foreign_find_load(file.toStringz).fromStringz;
+        enforce(opName !is null, "Could not find appropriate VIPS operation to load image with for file: " ~ file);
         auto options = VOption();
         options
             .set("filename", file)
@@ -64,7 +69,6 @@ public:
 
 package void baseOp(const(char)[] name, ref VOption options)
 {
-    import std.exception : enforce;
     import std.string : fromStringz, toStringz;
     import std.typecons : Unique;
     import vips.operation : VOperation;
@@ -76,12 +80,7 @@ package void baseOp(const(char)[] name, ref VOption options)
 unittest
 {
     import std.string : fromStringz;
-    import std.conv : to;
-    import std.typecons : Unique, scoped;
     import vips.operations : invert, thumbnail, thumbnail_image, rotate;
-    import std.datetime.stopwatch : AutoStart, StopWatch;
-    import std.stdio : writeln, writefln;
-
 
     vips_init("test");
     scope(exit) vips_shutdown();
