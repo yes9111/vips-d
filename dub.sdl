@@ -6,6 +6,7 @@ license "MIT"
 targetType "library"
 dependency "gtk-d:gtkd" version="~>3.8.3"
 libs "vips"
+lflags "-l:libgobject-2.0.so"
 configuration "lib" {
     excludedSourceFiles "source/tests/*"
 }

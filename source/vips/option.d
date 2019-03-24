@@ -1,5 +1,7 @@
 module vips.option;
 
+import std.variant : Variant;
+
 import vips.bindings;
 import vips.image;
 import vips.operation;
@@ -7,22 +9,12 @@ import vips.conv : toGObject;
 import gobject.Value;
 import gobject.ObjectG;
 
-private union ParamOutput
-{
-    int* vInt;
-    double* vDouble;
-    bool* vBool;
-    VImage* vImage;
-    double[]* vDoubleArray;
-    VipsBlob** vBlob;
-}
-
 private struct ParamConfig
 {
     string key;
     bool isOutput;
     Value value;
-    ParamOutput output;
+    Variant output;
 
     this(string key)
     {
@@ -62,7 +54,7 @@ public:
         auto config = ParamConfig(key);
         config.value = new Value().init(VImage.getType());
         config.isOutput = true;
-        config.output.vImage = value;
+        config.output = value;
         options[key] = config;
         return this;
     }
@@ -108,32 +100,21 @@ public:
         {
             config.value = new Value(U.init);
         }
-        static if (is(U == int))
-        {
-            config.output.vInt = value;
-        }
-        else static if (is(U == bool))
-        {
-            config.output.vBool = value;
-        }
-        else static if (is(U == double))
-        {
-            config.output.vDouble = value;
-        }
         else static if (is(U == double[]))
         {
             config.value = new Value().init(vips_array_double_get_type());
-            config.output.vDoubleArray = value;
+            //TODO need to add corresponding reader method for this
         }
         else static if (is(U == VipsBlob*))
         {
             config.value = new Value().init(vips_blob_get_type());
-            config.output.vBlob = value;
+            //TODO need to add corresponding reader handler for this
         }
         else
         {
             static assert(false, "Unknown output value: " ~ U.stringof);
         }
+        config.output = value;
         options[key] = config;
         return this;
     }
@@ -181,19 +162,24 @@ public:
                 {
                     auto obj = cast(VipsImage*)
                         g_value_get_object(option.value.getValueStruct);
-                    *(option.output.vImage) = VImage(obj);
+                    *(option.output.get!(VImage*)) = VImage(obj);
                 }
                 else if (type == GType.INT)
                 {
-                    *(option.output.vInt) = option.value.getInt();
+                    *(option.output.get!(int*)) = option.value.getInt();
                 }
                 else if (type == GType.BOOLEAN)
                 {
-                    *(option.output.vBool) = option.value.getBoolean();
+                    *(option.output.get!(bool*)) = option.value.getBoolean();
                 }
                 else if (type == GType.DOUBLE)
                 {
-                    *(option.output.vDouble) = option.value.getDouble();
+                    *(option.output.get!(double*)) = option.value.getDouble();
+                }
+                else
+                {
+                    // still need to handle double arrays
+                    // and blobs
                 }
             }
         }

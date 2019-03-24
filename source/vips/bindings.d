@@ -1,6 +1,6 @@
 module vips.bindings;
 
-import gobject.c.types : GObject, GValue, GType;
+public import gobject.c.types : GObject, GValue, GType;
 
 extern(C)
 {
